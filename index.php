@@ -65,10 +65,21 @@ if ($result->num_rows > 0) {
                 if (!empty($articles)) {
                     foreach ($articles as $article) {
                         echo "<article>";
+                        echo "<a href='article.php?id={$article['id']}' class='article-link'>";
                         echo "<h3>{$article['title']}</h3>";
-                        echo "<p class='meta'>Publicado el " . date('d/m/Y', strtotime($article['created_at'])) . " en {$article['category_name']}</p>";
+                        
+                        // Mostrar las categorías como etiquetas junto a la fecha de publicación
+                        echo "<p class='meta'>Publicado el " . date('d/m/Y', strtotime($article['created_at'])) . " ";
+
+                        // Mostrar las categorías como etiquetas
+                        $categories = explode(',', $article['category_name']);
+                        foreach ($categories as $category) {
+                            echo "<span class='category-tag'>$category</span>";
+                        }
+
+                        echo "</p>";
                         echo "<p>" . substr($article['content'], 0, 200) . "...</p>"; // Mostrar solo un extracto del contenido
-                        echo "<a href='article.php?id={$article['id']}'>Leer más</a>";
+                        echo "</a>";
                         echo "</article>";
                     }
                 } else {
