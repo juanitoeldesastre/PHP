@@ -68,6 +68,12 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 800px; /* Tamaño fijo */
     margin: 0 auto; /* Centrar los artículos */
+    word-wrap: break-word; /* Evitar desbordamiento de palabras */
+    overflow-wrap: break-word; /* Manejar palabras largas */
+    min-height: 300px; /* Altura mínima fija */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .articles article h3 {
@@ -83,6 +89,7 @@ main {
 
 .articles article p {
     line-height: 1.8;
+    flex-grow: 1;
 }
 
 .articles article a {
@@ -91,6 +98,7 @@ main {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    align-self: flex-start;
 }
 
 .articles article a:hover {
