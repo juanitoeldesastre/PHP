@@ -107,6 +107,7 @@ $conn->close();
                 <?php endforeach; ?>
             </ul>
             <a href="create_article.php">Crear Nuevo Artículo</a>
+            <a href="create_special_article.php">Crear Artículo Especial</a> <!-- Nueva opción para crear artículo especial -->
         </section>
 
         <section class="manage-comments">

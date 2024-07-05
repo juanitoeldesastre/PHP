@@ -60,29 +60,32 @@ main {
     text-align: center;
 }
 
-.articles article {
-    margin-bottom: 30px;
+/* Ajustes para los artículos en el index.php */
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+    gap: 20px; /* Espacio entre los artículos */
+}
+
+.articles .article-item {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Tamaño fijo */
-    margin: 0 auto; /* Centrar los artículos */
-    word-wrap: break-word; /* Evitar desbordamiento de palabras */
-    overflow-wrap: break-word; /* Manejar palabras largas */
-    min-height: 300px; /* Altura mínima fija */
+    box-sizing: border-box;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: relative; /* Para el enlace absoluto */
+    width: 350px;
+    height: 150px;
 }
 
-.articles article h3 {
+.articles .article-item h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.articles article p.meta {
+.articles .article-item p.meta {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 10px;
@@ -90,7 +93,7 @@ main {
     align-items: center;
 }
 
-.articles article p.meta .category-tag {
+.articles .article-item p.meta .category-tag {
     display: inline-block;
     background-color: #ffffff;
     color: #000000;
@@ -99,25 +102,27 @@ main {
     border-radius: 15px;
     margin-left: 7px;
     border: 1px solid #afafaf;
-    
 }
 
-.articles article p {
+.articles .article-item p {
     line-height: 1.8;
     flex-grow: 1;
 }
 
-.articles article a.article-link {
-    color: inherit; /* Mantener el color del texto */
-    text-decoration: none; /* Eliminar subrayado */
-    position: absolute; /* Posicionar el enlace absoluto */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px; /* Mantener el padding del artículo */
-    z-index: 1; /* Asegurar que esté por encima del contenido */
+.article-link {
+    text-decoration: none;
+    color: inherit;
 }
+
+.article-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .pagination {
     text-align: center;
@@ -153,4 +158,51 @@ footer {
 
 footer p {
     font-size: 0.9rem;
+}
+
+/* Estilos para los comentarios */
+.comments .comment {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comments .comment p.meta {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Estilos para el formulario de agregar comentarios */
+.add-comment .form-group {
+    margin-bottom: 15px;
+}
+
+.add-comment label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-comment input[type="text"],
+.add-comment textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-comment button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-comment button:hover {
+    background-color: #555;
 }
