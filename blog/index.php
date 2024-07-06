@@ -17,7 +17,7 @@
         /* Estilo para el artículo especial */
         .special-article-container {
             display: flex;
-            background-color: #fff;
+            background-color: #f0f0f0;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -25,7 +25,7 @@
         }
 
         .special-article-container img {
-            width: 700px;
+            max-width: 650px;
             height: auto;
             border-radius: 5px;
             margin-right: 20px;
@@ -224,6 +224,8 @@
                     echo "<a href='special_article.php?id={$special_article['id']}' class='article-link'>";
                     echo "<h3>{$special_article['title']}</h3>";
                     echo "<p class='meta'>";
+                    echo "Publicado el " . date('d/m/Y', strtotime($special_article['created_at']));
+                    echo "<span class='category-tag'>Artículo Especial</span>";
                     echo "</p>";
                     echo "<p>" . substr($special_article['summary'], 0, 200) . "...</p>"; // Mostrar solo un extracto del resumen
                     echo "</a>";
