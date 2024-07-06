@@ -14,31 +14,138 @@
             display: none; /* Ocultar inicialmente el botón de cargar más */
         }
 
-        /* Estilos para el artículo especial */
-        .special-article-item {
+        /* Estilo para el artículo especial */
+        .special-article-container {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
             background-color: #fff;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            align-items: center;
         }
 
-        .special-article-item img {
-            width: 200px;
+        .special-article-container img {
+            width: 700px;
             height: auto;
             border-radius: 5px;
             margin-right: 20px;
         }
 
-        .special-article-content h2 {
+        .special-article-content {
+            max-width: calc(100% - 170px); /* Ajustar para dejar espacio para la imagen y el margen */
+        }
+
+        .special-article-container h3 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
 
-        .special-article-content p {
-            line-height: 1.6;
+        .special-article-container .meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .special-article-container p {
+            line-height: 1.8;
+        }
+
+        .articles-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+            gap: 20px; /* Espacio entre los artículos */
+        }
+
+        .article-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            height: 150px;
+        }
+
+        .article-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .article-item p.meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-item p.meta .category-tag {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000000;
+            font-size: .70rem;
+            padding: 0px 10px;
+            border-radius: 15px;
+            margin-left: 7px;
+            border: 1px solid #afafaf;
+        }
+
+        .article-item p {
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .article-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a, .pagination .current-page {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 0 5px;
+            background-color: #f7f7f7;
+            color: #333;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .pagination a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .pagination .current-page {
+            font-weight: bold;
+            color: #fff;
+            background-color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
         }
     </style>
     <script>
@@ -55,14 +162,10 @@
                         type: 'GET',
                         data: { page: page },
                         success: function(response) {
-                            if (response.trim() === "<p>No hay más artículos disponibles.</p>") {
-                                $('#load-more').text('No hay más artículos disponibles');
-                            } else {
-                                $('#load-more').hide();
-                                $('#articles-container').append(response);
-                                loading = false;
-                                page++;
-                            }
+                            $('#load-more').hide();
+                            $('#articles-container').append(response);
+                            loading = false;
+                            page++;
                         },
                         error: function() {
                             $('#load-more').text('Error al cargar').show();
@@ -101,39 +204,53 @@
 
     <main>
         <section class="articles">
-            <div class="container articles-container" id="articles-container">
+            <div class="container">
                 <?php
-                // Incluir el artículo especial
-                include('especial_article.php');
-
                 // Incluir el archivo de conexión a la base de datos
                 include('db_connection.php');
 
+                // Query para obtener el artículo especial
+                $special_article_sql = "SELECT * FROM special_articles LIMIT 1";
+                $special_article_result = $conn->query($special_article_sql);
+
+                // Mostrar el artículo especial si existe
+                if ($special_article_result->num_rows > 0) {
+                    $special_article = $special_article_result->fetch_assoc();
+                    echo "<div class='special-article-container'>";
+                    if (isset($special_article['image']) && !empty($special_article['image'])) {
+                        echo "<img src='{$special_article['image']}' alt='{$special_article['title']}' />";
+                    }
+                    echo "<div class='special-article-content'>";
+                    echo "<a href='special_article.php?id={$special_article['id']}' class='article-link'>";
+                    echo "<h3>{$special_article['title']}</h3>";
+                    echo "<p class='meta'>";
+                    echo "</p>";
+                    echo "<p>" . substr($special_article['summary'], 0, 200) . "...</p>"; // Mostrar solo un extracto del resumen
+                    echo "</a>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+
+                // Liberar el resultado del artículo especial
+                $special_article_result->free();
+
                 // Definir el número de artículos por página y la página actual
-                $articles_per_page = 11; // Uno menos porque el artículo especial ocupa un lugar
+                $articles_per_page = 12;
                 $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                 $offset = ($current_page - 1) * $articles_per_page;
 
                 // Query para obtener los artículos paginados
-                $sql = "SELECT articles.*, categories.name AS category_name 
-                        FROM articles 
-                        INNER JOIN categories ON articles.category_id = categories.id 
-                        ORDER BY articles.created_at DESC 
-                        LIMIT $articles_per_page OFFSET $offset";
-                $result = $conn->query($sql);
-
-                // Obtener el total de artículos (para la paginación)
-                $sql_total = "SELECT COUNT(*) AS total FROM articles";
-                $result_total = $conn->query($sql_total);
-                $row_total = $result_total->fetch_assoc();
-                $total_articles = $row_total['total'];
-
-                // Calcular el total de páginas
-                $total_pages = ceil($total_articles / $articles_per_page);
+                $regular_articles_sql = "SELECT articles.*, categories.name AS category_name 
+                                        FROM articles 
+                                        INNER JOIN categories ON articles.category_id = categories.id 
+                                        ORDER BY articles.created_at DESC 
+                                        LIMIT $articles_per_page OFFSET $offset";
+                $regular_articles_result = $conn->query($regular_articles_sql);
 
                 // Verificar si se obtuvieron resultados
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
+                if ($regular_articles_result->num_rows > 0) {
+                    echo "<div class='articles-container' id='articles-container'>";
+                    while ($row = $regular_articles_result->fetch_assoc()) {
                         echo "<a href='article.php?id={$row['id']}' class='article-link'>";
                         echo "<div class='article-item'>";
                         echo "<h3>{$row['title']}</h3>";
@@ -145,13 +262,13 @@
                         echo "</div>";
                         echo "</a>";
                     }
+                    echo "</div>";
                 } else {
                     echo "<p>No hay artículos disponibles.</p>";
                 }
 
-                // Liberar el resultado y cerrar la conexión
-                $result->free();
-                $result_total->free();
+                // Liberar el resultado de los artículos regulares y cerrar la conexión
+                $regular_articles_result->free();
                 $conn->close();
                 ?>
             </div>
