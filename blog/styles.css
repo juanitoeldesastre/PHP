@@ -1,0 +1,207 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+header nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Banner */
+#banner {
+    background: url('banner.jpg') no-repeat center center/cover;
+    height: 400px;
+    position: relative;
+}
+
+#banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilo para la sección de artículos */
+#articles {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+#articles .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.article {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+}
+
+.article h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.article .meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.article p {
+    margin-bottom: 10px;
+}
+
+.article a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.article a:hover {
+    color: #007BFF;
+}
+
+.article:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de cargar más artículos */
+.load-more {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.load-more button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.load-more button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    #banner {
+        height: 300px;
+    }
+
+    .article {
+        padding: 15px;
+    }
+
+    .article h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #banner {
+        height: 200px;
+    }
+
+    .article h2 {
+        font-size: 18px;
+    }
+}
+
+/* Estilos para la página de login */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.login-container .error {
+    color: #FF0000;
+    margin-bottom: 20px;
+}
