@@ -9,19 +9,27 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    color: #ffffff;
     padding: 15px 0;
+    text-align: center;
+    position: relative; /* Asegura que el menú se alinee correctamente bajo el banner */
+}
+
+header nav {
+    background: url('qu.png') no-repeat center center/cover;
+    padding: 20px 0; /* Ajusta el padding según lo necesites */
 }
 
 header nav ul {
     list-style: none;
-    text-align: center;
+    padding: 0;
+    margin: 0; 
 }
 
 header nav ul li {
     display: inline;
     margin: 0 20px;
+    position: relative;
 }
 
 header nav ul li a {
@@ -29,16 +37,36 @@ header nav ul li a {
     text-decoration: none;
     font-weight: bold;
     font-size: 18px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: #cacaca;
+    transition: width 0.3s ease;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
 }
 
 header nav ul li a:hover {
-    text-decoration: underline;
+    color: #cacaca; /* Cambia el color del texto cuando se pasa el cursor por encima */
 }
 
 /* Banner */
 #banner {
-    background: url('banner.jpg') no-repeat center center/cover;
-    height: 400px;
+    background: url('all_tomorrows.png') no-repeat center center/cover;
+    height: 800px;
     position: relative;
 }
 
@@ -154,54 +182,4 @@ header nav ul li a:hover {
     .article h2 {
         font-size: 18px;
     }
-}
-
-/* Estilos para la página de login */
-.login-container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.login-container h1 {
-    margin-bottom: 20px;
-}
-
-.login-container label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-container button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.login-container button:hover {
-    background-color: #0056b3;
-}
-
-.login-container .error {
-    color: #FF0000;
-    margin-bottom: 20px;
 }

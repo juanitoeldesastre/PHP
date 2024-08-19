@@ -20,6 +20,11 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de crear un archivo CSS -->
 </head>
 <body>
+    <!-- Banner -->
+    <section id="banner">
+        <img src="all_tomorrows.png" alt="Banner del blog"> <!-- Asegúrate de tener una imagen -->
+    </section>
+
     <!-- Menú de navegación -->
     <header>
         <nav>
@@ -30,11 +35,6 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </ul>
         </nav>
     </header>
-
-    <!-- Banner -->
-    <section id="banner">
-        <img src="banner.jpg" alt="Banner del blog"> <!-- Asegúrate de tener una imagen -->
-    </section>
 
     <!-- Artículos del blog -->
     <section id="articles">
@@ -61,3 +61,5 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="scripts.js"></script> <!-- Este será el archivo JS para manejar AJAX -->
 </body>
 </html>
+
+
