@@ -22,8 +22,18 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <!-- Banner -->
     <section id="banner">
-        <img src="all_tomorrows.png" alt="Banner del blog"> <!-- Asegúrate de tener una imagen -->
-    </section>
+    <img src="all_tomorrows.png" alt="Banner del blog">
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/jS5fTzMP_mg?autoplay=1&controls=0&modestbranding=1&showinfo=0&fs=0&playsinline=1"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+
+
 
     <!-- Menú de navegación -->
     <header>
@@ -61,5 +71,7 @@ $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="scripts.js"></script> <!-- Este será el archivo JS para manejar AJAX -->
 </body>
 </html>
+
+
 
 

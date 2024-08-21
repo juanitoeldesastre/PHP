@@ -68,12 +68,35 @@ header nav ul li a:hover {
     background: url('all_tomorrows.png') no-repeat center center/cover;
     height: 800px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Oculta cualquier contenido desbordante */
 }
 
 #banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.video-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    width: 800px;
+    height: 450px;
+    overflow: hidden; /* Asegura que el video no se desborde */
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 /* Estilo para la sección de artículos */
