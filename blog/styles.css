@@ -89,7 +89,7 @@ header nav ul li a:hover {
     z-index: 2;
     max-width: 1000px;
     width: 800px;
-    height: 450px;
+    height: 452px;
     overflow: hidden; /* Asegura que el video no se desborde */
 }
 
